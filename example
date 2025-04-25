@@ -1,0 +1,16 @@
+**Example:**
+
+```systemverilog
+sequence handshake;
+    req ##1 ack;
+endsequence
+
+property handshake_rule;
+    @(posedge clk) disable iff (reset) handshake;
+endproperty
+
+assert property (handshake_rule)
+    else $error("Handshake failed");
+```
+
+---
